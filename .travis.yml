@@ -1,0 +1,36 @@
+language: node_js
+node_js:
+  - 13
+
+branches:
+  only:
+  - main
+
+services:
+  - docker
+
+# Pre-testing installs
+install:
+  - echo "nothing needs to be installed"
+
+# Scripts to be run such as tests
+before_script:
+  - echo "no tests"
+
+script:
+  - docker --version # print the version for logging
+  # - docker build -t api-feeds \
+  #   --build-arg POSTGRES_USERNAME_ARG=${POSTGRES_USERNAME} \
+  #   --build-arg POSTGRES_PASSWORD_ARG=${POSTGRES_PASSWORD} \
+  #   --build-arg POSTGRES_HOST_ARG=${POSTGRES_HOST} \
+  #   --build-arg POSTGRES_DB_ARG=${POSTGRES_DB} \
+  #   --build-arg JWT_SECRET_ARG=${JWT_SECRET} \
+  #   --build-arg AWS_BUCKET_ARG=${AWS_BUCKET} \
+  #   --build-arg AWS_REGION_ARG=${AWS_REGION} \
+  #   --build-arg AWS_PROFILE_ARG=${AWS_PROFILE} \
+  #   --build-arg URL_ARG=${URL} -f ./microservices/api/feeds/Dockerfile ./microservices/api/feeds/
+  - docker build -t vahiwe/simple-reverse-proxy:latest -f ./microservices/reverse-proxy/Dockerfile ./microservices/reverse-proxy/
+
+after_success:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker push vahiwe/simple-node
