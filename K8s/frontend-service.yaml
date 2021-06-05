@@ -7,29 +7,9 @@ metadata:
   namespace: default
   selfLink: /api/v1/namespaces/default/services/frontend-app-svc
 spec:
-  ports:
-  - port: 80
-    protocol: TCP
-    targetPort: 80
+  type: LoadBalancer
   selector:
     app: frontend-app
-  sessionAffinity: None
-  type: ClusterIP
-status:
-  loadBalancer: {}
-
-# apiVersion: v1
-# kind: Service
-# metadata:
-#   labels:
-#     app: frontend-app
-#   name: frontend-app-svc
-#   namespace: default
-#   selfLink: /api/v1/namespaces/default/services/frontend-app-svc
-# spec:
-#   type: LoadBalancer
-#   selector:
-#     app: frontend-app
-#   ports:
-#     - port: 80
-#       targetPort: 80
+  ports:
+    - port: 80
+      targetPort: 80
