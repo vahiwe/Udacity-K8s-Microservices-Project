@@ -14,7 +14,6 @@ spec:
       labels:
         app: users-app
     spec:
-      serviceAccountName: build-robot
       containers:
       - name: udagram-api-users
         image: vahiwe/udagram-api-users
