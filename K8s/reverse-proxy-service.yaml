@@ -5,9 +5,9 @@ metadata:
     service: reverseproxy
   name: reverseproxy-svc
 spec:
-  type: LoadBalancer
-  selector:
-    app: reverseproxy
   ports:
-    - port: 80
-      targetPort: 80
+  - name: "8080"
+    port: 8080
+    targetPort: 8080
+  selector:
+    service: reverseproxy
