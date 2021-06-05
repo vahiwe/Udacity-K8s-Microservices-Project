@@ -14,7 +14,6 @@ spec:
       labels:
         app: feeds-app
     spec:
-      serviceAccountName: build-robot
       containers:
       - name: udagram-api-feeds
         image: vahiwe/udagram-api-feeds
