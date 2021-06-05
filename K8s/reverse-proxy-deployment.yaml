@@ -20,7 +20,7 @@ spec:
         imagePullPolicy: Always
         name: reverseproxy
         ports:
-        - containerPort: 8080
+        - containerPort: 80
           protocol: TCP
         resources:
           limits:
