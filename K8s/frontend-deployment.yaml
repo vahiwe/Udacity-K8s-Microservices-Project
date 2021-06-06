@@ -18,5 +18,10 @@ spec:
       - name: udagram-frontend
         image: vahiwe/udagram-frontend
         imagePullPolicy: Always
+        resources:
+          limits:
+            cpu: 500m
+          requests:
+            cpu: 200m
         ports:
         - containerPort: 80
